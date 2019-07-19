@@ -9,15 +9,16 @@ const httpOptions = {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
-export class HeroService {
+export class HeroService { 
   private apiUrl: string = 'http://localhost:3000/heroes';
-  constructor( 
+  constructor(
     private http: HttpClient
   ) { }
   getHeroes(): Observable<Hero[]>{
-    return this.http.get<Hero[]>(this.apiUrl).pipe(
+    const url = `${this.apiUrl}?_sort=id&_order=desc`
+    return this.http.get<Hero[]>(url).pipe(
       tap(data => JSON.stringify(data))
     );
   }
@@ -28,9 +29,9 @@ export class HeroService {
   }
   updateHero (hero: Hero, id:number): Observable<Hero> {
     return this.http.put<Hero>(this.apiUrl + '/' + id, hero, httpOptions)
-  } 
+  }
   deleteHero(id: number): Observable<Hero> {
-    const url = this.apiUrl + '/' + id;
+    const url = `${this.apiUrl}/${id}`;
     return this.http.delete<Hero>(url, httpOptions);
   }
   searchHero(name: string): Observable<Hero[]>{
@@ -43,6 +44,6 @@ export class HeroService {
     );
   }
   addHero(hero: Hero): Observable<Hero>{
-    return this.http.post<Hero>(this.apiUrl, hero, httpOptions);
+    return this.http.post<Hero>(this.apiUrl,hero, httpOptions);
   }
 }

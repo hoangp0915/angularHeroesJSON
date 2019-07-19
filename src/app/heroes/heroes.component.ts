@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
@@ -13,7 +14,7 @@ export class HeroesComponent implements OnInit {
 
   searchHero(name: string):void{
     name ? this.heroService.searchHero(name).subscribe(heroes => this.heroes = heroes) : this.getHeroes()
-  } 
+  }
   getHeroes(): void {
     this.heroService.getHeroes().subscribe(
       heroes => this.heroes = heroes
@@ -21,13 +22,13 @@ export class HeroesComponent implements OnInit {
   }
   deleteHero(hero: Hero): void {
     this.heroService.deleteHero(hero.id).subscribe(
-      () => this.getHeroes(),
-      (err) => console.log(err),
-
+      () => {
+        this.getHeroes();
+        this.toastr.success('Deleted')
+      } 
     );
-    this.getHeroes();
   }
-  constructor(private heroService: HeroService, private route: ActivatedRoute) { }
+  constructor(private heroService: HeroService, private route: ActivatedRoute, private toastr: ToastrService) { }
   ngOnInit() {
     this.getHeroes(); 
     // console.log(this.heroService.genID(this.heroes)); 

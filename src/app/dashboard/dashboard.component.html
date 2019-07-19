@@ -1,5 +1,6 @@
 <ul class="list-group">
-    <li class="list-group-item" *ngFor="let hero of heroes">
-        <a [routerLink]="[ '/heroes', hero.id ]" routerLinkActive="router-link-active" >{{hero.name}}</a>
-    </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let hero of heroes">
+    <a [routerLink]="[ '/heroes', hero.id ]" routerLinkActive="router-link-active">{{hero.name}}</a>
+    <span class="badge badge-primary badge-pill">{{hero.id}}</span>
+  </li>
 </ul>
