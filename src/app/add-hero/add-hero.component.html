@@ -1,0 +1,9 @@
+<h2 class="mb-3">Add Hero</h2>
+<div class="form-group">
+    <label for="usr">Name:</label>
+    <input type="text" #heroName class="form-control" placeholder="Enter name hero..." [(ngModel)]="name">
+</div>
+<div class="form-group">
+    <button class="btn btn-outline-primary btn-sm mr-2" (click)="onBack()">Back</button>
+    <button class="btn btn-outline-primary btn-sm" (click)="addHero(name);name=''">Save</button>
+</div>
