@@ -23,7 +23,7 @@
     "@types/jqueryui": "^1.12.7",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jqueryui": "^1.11.1",
     "ng2-slim-loading-bar": "^4.0.0",
     "ngx-toastr": "^10.0.4",
